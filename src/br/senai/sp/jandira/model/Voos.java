@@ -1,12 +1,28 @@
 package br.senai.sp.jandira.model;
 
 import java.lang.reflect.Array;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
 abstract class Voos {
     String origem, destino;
     int numeroVoo;
+
+    private LocalDate dataPartida = LocalDate.now();
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
+    private String dataArrumada = dataPartida.format(formatter);
+
+    public String getDataArrumada() {
+        return dataArrumada;
+    }
+
+    public void setDataArrumada(String dataArrumada) {
+        this.dataArrumada = dataArrumada;
+    }
+
 
     List<Voos> listaVoos = new ArrayList<>();
 
@@ -22,10 +38,11 @@ abstract class Voos {
         }
     }
 
-    public Voos(String origem, String destino, int numeroVoo) {
+    public Voos(String origem, String destino, int numeroVoo, String dataArrumada) {
         this.origem = origem;
         this.destino = destino;
         this.numeroVoo = numeroVoo;
+        this.dataArrumada = dataArrumada;
     }
 
     public String getOrigem() {
